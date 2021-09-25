@@ -120,6 +120,16 @@ mainAudio.addEventListener('loadeddata',() => {
 playPauseBtn.addEventListener('click',() => {
     const isPaused = playPauseBtn.classList.contains('paused');
     isPaused ? handlePlay() : handlePause();
+    if (!isPaused){
+        const currentSong = document.querySelector('li.playing');
+        const durationCurrent = currentSong.querySelector('.music-duration');
+
+        durationCurrent.innerHTML = durationCurrent.getAttribute('duration');
+    }
+    else {
+        const durationTag = liTags[currentIndex].querySelector('.music-duration');
+        durationTag.innerHTML = 'Playing';
+    }
 });
 
 function handlePlay() {
@@ -136,12 +146,22 @@ function handlePause() {
     animateionImg.pause();
 }
 
-prevBtn.addEventListener('click',() => {
-    currentIndex--;
-    currentIndex = currentIndex < 0 ? songs.length-1 : currentIndex;
-    loadMusic(currentIndex);
-    handlePlay();
-})
+prevBtn.addEventListener('click',handlePrev)
+
+function handlePrev() {
+    if (btnRepeat.classList.contains('ri-shuffle-fill')) {
+        randomMusic();
+        handlePlay();
+        handleChange();
+    }
+    else{
+        currentIndex--;
+        currentIndex = currentIndex < 0 ? songs.length-1 : currentIndex;
+        loadMusic(currentIndex);
+        handlePlay();
+        handleChange();
+    }
+}
 
 nextBtn.addEventListener('click',handleNext);
 
@@ -149,12 +169,14 @@ function handleNext(e) {
     if (btnRepeat.classList.contains('ri-shuffle-fill')) {
         randomMusic();
         handlePlay();
+        handleChange();
     }
     else{
         currentIndex++;
         currentIndex = currentIndex > songs.length - 1 ? 0 : currentIndex;
         loadMusic(currentIndex);
         handlePlay();
+        handleChange();
     }
 }
 
@@ -216,6 +238,7 @@ mainAudio.addEventListener('ended',() => {
     else {
         randomMusic();
         handlePlay();
+        handleChange();
     }
 })
 
@@ -268,6 +291,17 @@ function playingNow() {
     loadMusic(indexSong);
     handlePlay();
     animateionImg.play();
+}
+
+function handleChange() {
+    const currentSong = document.querySelector('li.playing');
+    const durationTag = liTags[currentIndex].querySelector('.music-duration');
+    const durationCurrent = currentSong.querySelector('.music-duration');
+
+    currentSong.classList.remove('playing');
+    liTags[currentIndex].classList.add('playing');
+    durationTag.innerHTML = 'Playing';
+    durationCurrent.innerHTML = durationCurrent.getAttribute('duration');
 }
 
 const liTags = document.querySelectorAll('.music-list ul li');
