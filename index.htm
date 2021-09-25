@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NCS Music Player | by Quang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/favicon-32x32.png" type="image/png">
+</head>
+<body>
+    <div class="app">
+        <div class="top-bars">
+            <p>Now Playing</p>
+        </div>
+        <div class="img-area">
+            <img src="assets/img/Bones.jfif" alt="">
+        </div>
+        <div class="song-details">
+            <p class="name">Bones</p>
+            <p class="singer">Clarx</p>
+        </div>
+        <div class="progress-area">
+            <div class="progress-bar"></div>
+            <audio src="" id="main-audio"></audio>
+        </div>
+        <div class="timer">
+            <span class="current">0:30</span>
+            <span class="duration">3:20</span>
+        </div>
+        <div class="controls">
+            <i class="ri-repeat-line repeat-playlist" id="btnRepeat"></i>
+            <i class="ri-skip-back-fill" id="prev"></i>
+            <div class="play-pause paused">
+                <i class="ri-play-mini-fill"></i>
+            </div>
+            <i class="ri-skip-forward-fill" id="next"></i>
+            <i class="ri-play-list-fill" id="btnShowList"></i>
+        </div>
+        <div class="music-list">
+            <div class="header">
+                <div class="row">
+                    <i class="ri-play-list-fill"></i>
+                    <span>Music List</span>
+                </div>
+                <i class="ri-close-fill" id="close"></i>
+            </div>
+            <ul></ul>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
