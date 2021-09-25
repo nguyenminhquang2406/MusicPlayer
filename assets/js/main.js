@@ -199,8 +199,10 @@ progressArea.addEventListener('click',(e) => {
     const progressWidth = progressArea.clientWidth;
     const valueOffSetX = e.offsetX;
     const duration = mainAudio.duration;
+    const durationTag = liTags[currentIndex].querySelector('.music-duration');
 
     mainAudio.currentTime = valueOffSetX / progressWidth * duration;
+    durationTag.innerHTML = 'Playing';
     handlePlay();
 })
 
